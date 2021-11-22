@@ -1,0 +1,77 @@
+{
+    "eula": "EULA",
+    "vendor": "SAP",
+    "license": "1.0",
+    "id": "com.sap.standard.content.scopebundle",
+    "version": "1.0.0",
+    "name": "Scope Bundle API Widget",
+    "newInstancePrefix": "ScopeBundleAPI",
+    "description": "Widget to send request to a CAP service for communication between SAC and Steampunk APIs",
+    "webcomponents": [{
+        "kind": "main",
+        "tag": "com-sap-standard-content-scopebundleapi",
+        "url": "https://TiagoDP.github.io/CustomTest/scopeBundleAPI.js",
+        "integrity": "",
+        "ignoreIntegrity": true
+    }],
+    "properties": {
+        "width": {
+            "type": "integer",
+            "default": 1
+        },
+        "height": {
+            "type": "integer",
+            "default": 1
+        }
+    },
+    "methods": {
+        "getScopeBundles": {
+            "description": "Returns all ScopeBundle values",
+            "returnType": "string[]"
+        },
+        "getScopeBundle": {
+            "description": "Returns a single ScopeBundle value",
+            "parameters": [{
+                "name": "ScopeBundleID",
+                "type": "string",
+                "description": "Scope Bundle ID (GUID)"
+            }],
+            "returnType": "string"
+        },
+        "createScopeBundle": {
+            "description": "Creates a new ScopeBundle",
+            "parameters": [{
+                "name": "ScopeBundleID",
+                "type": "string",
+                "description": "Scope Bundle ID (GUID)"
+            }],
+            "returnType": "integer"
+        },
+        "createScopeBundleScenario": {
+            "description": "Creates a new ScopeBundle Scenario",
+            "parameters": [{
+                    "name": "BundleItemID",
+                    "type": "string",
+                    "description": "Bundle Item ID (GUID)"
+                },
+                {
+                    "name": "ScopeBundleID",
+                    "type": "string",
+                    "description": "Scope Bundle ID (GUID)"
+                },
+                {
+                    "name": "ScenarioID",
+                    "type": "string",
+                    "description": "Scenario ID (GUID)"
+                },
+                {
+                    "name": "ModelCompanyID",
+                    "type": "string",
+                    "description": "Model Company ID (GUID)"
+                }
+            ],
+            "returnType": "integer"
+        }
+    },
+    "events": {}
+}

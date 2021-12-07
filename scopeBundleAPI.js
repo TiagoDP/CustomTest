@@ -28,7 +28,7 @@ var ajaxPromisify = (url, type, data, headers) => {
 	})
 }
 
-const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-scopebundle-approuter.cfapps.eu10.hana.ondemand.com/service-noauth/ScopeBundle';
+const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-scopebundle-approuter.cfapps.eu10.hana.ondemand.com';
 
 (function () {
 	const template = document.createElement('template')

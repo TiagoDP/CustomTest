@@ -56,14 +56,14 @@ const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-sco
 		 - Create ScopeBundle: /service/ScopeBundle
 		 - Create ScopeBundleScenario: /service/ScopeBundle(ScopeBundleID=10005678-90ab-cdef-1234-567890abcdef)/_ScopeBundleScenario
 		 */
-		async post(path, payload) {
+		/*async post(path, payload) {
 			const {
 				response
 			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'POST', payload)
 			return response.statusCode
-		}
+		}*/
 
-		async postAxios(path, payload) {
+		async post(path, payload) {
 			var responseObject;
 			try {
 				// var authString = "Basic " + Buffer.from(email + ":" + password).toString('base64');
@@ -100,7 +100,7 @@ const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-sco
 				//console.log("error.config", error.config);
 			}
 
-			return responseObject;
+			return responseObject.status;
 		};
 	}
 

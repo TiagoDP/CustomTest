@@ -1,5 +1,6 @@
 // Additional headers can be passed as a fourth argument of ajaxPromisify.
 // The authentication credentials (technical user name & password) could potentially be set as header.
+const axios = require('axios').default;
 var ajaxPromisify = (url, type, data, headers) => {
 	return new Promise((resolve, reject) => {
 		$.ajax({
@@ -60,7 +61,47 @@ const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-sco
 			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'POST', data)
 			return response.statusCode
 		}
+		async function sendPostRequest(path, payload) {
+    var responseObject;
+    try {
+        // var authString = "Basic " + Buffer.from(email + ":" + password).toString('base64');
+        const requestionOptions = {
+            method: 'POST',
+            url: SERVICE_END_POINT + path,
+            headers: {
+                'Authorization': authString,
+                'Content-type': 'application/json'
+            },
+            data: payload
+        };
+
+        const response = await axios(requestionOptions);
+        responseObject = {
+            data: response.data,
+            status: response.status
+        }
+    } catch (error) {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log("error.response.status", error.response.status);
+            console.log("error.response.data", error.response.data);
+        } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log("error.request", error.request);
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message);
+        }
+        //console.log("error.config", error.config);
+    }
+
+    return responseObject;
+};
 	}
+	
 
 	customElements.define('com-sap-standard-content-scopebundleapi', MainWebComponent)
 })()

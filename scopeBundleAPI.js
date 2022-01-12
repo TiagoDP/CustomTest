@@ -6,11 +6,7 @@ var ajaxPromisify = (url, type, data, headers) => {
 			url,
 			type,
 			data,
-			contentType: 'application/json',
 			headers,
-			// xhrFields: {
-			//   withCredentials: true
-			// },
 			crossDomain: true,
 			success: function (response, status, xhr) {
 				resolve({
@@ -46,7 +42,7 @@ const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-sco
 		async get(path, data) {
 			const {
 				response
-			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'GET', data)
+			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'GET', data, {'Content-type': 'application/json'})
 			return response;
 		}
 
@@ -57,7 +53,7 @@ const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-sco
 		async post(path, data) {
 			const {
 				response
-			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'POST', data)
+			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'POST', data, {'Content-type': 'application/json'})
 			return response.statusCode
 		}
 	}

@@ -1,26 +1,17 @@
 // Additional headers can be passed as a fourth argument of ajaxPromisify.
 // The authentication credentials (technical user name & password) could potentially be set as header.
 var ajaxPromisify = (url, type, data, headers) => {
-	return new Promise((resolve, reject) => {
-		$.ajax({
-			url,
-			type,
-			data,
-			headers,
-			crossDomain: true,
-			success: function (response, status, xhr) {
-				resolve({
-					response,
-					status,
-					xhr
-				})
-			},
-			error: function (response, status, xhr) {
-				const err = new Error('xhr error')
-				err.status = xhr.status
-				reject(err)
-			}
-		})
+	$.ajax({
+		url,
+		type,
+		data,
+		headers,
+		success: function (response) {
+			return response;
+		},
+		error: function (error) {
+			console.log(error);
+		}
 	})
 }
 
@@ -42,7 +33,7 @@ const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-sco
 		async get(path, data) {
 			const {
 				response
-			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'GET', data, {'Content-type': 'application/json'})
+			} = ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'GET', data, {'Content-type': 'application/json'})
 			return response;
 		}
 
@@ -53,7 +44,7 @@ const SERVICE_END_POINT = 'https://customersuccessmarketstandard-dev-cap-sac-sco
 		async post(path, data) {
 			const {
 				response
-			} = await ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'POST', data, {'Content-type': 'application/json'})
+			} = ajaxPromisify(`${SERVICE_END_POINT}${path}`, 'POST', data, {'Content-type': 'application/json'})
 			return response.statusCode
 		}
 	}

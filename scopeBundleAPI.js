@@ -5,13 +5,16 @@ var ajaxPromisify = (url, type, data, headers) => {
 		url,
 		type,
 		data,
-		headers,
-		success: function (response) {
+		crossDomain: true,
+		dataType: 'json',
+		//headers,
+		success: function (response, textStatus, jqXHR) {
 			return response;
 		},
-		error: function (error) {
-			console.log(error);
-		}
+		error: function (response, textStatus, errorThrown) {
+			console.warn(response, textStatus, errorThrown);
+			alert('CORS failed - ' + textStatus);
+	    	}
 	})
 }
 
